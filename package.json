@@ -1,0 +1,23 @@
+{
+  "name": "misimi-the-sequal",
+  "version": "1.0.0",
+  "description": "Misimi, the Sequal",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mikelothar/misimi-the-sequal.git"
+  },
+  "keywords": [
+    "fun",
+    "phaser"
+  ],
+  "author": "Mike Lothar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mikelothar/misimi-the-sequal/issues"
+  },
+  "homepage": "https://github.com/mikelothar/misimi-the-sequal#readme"
+}
