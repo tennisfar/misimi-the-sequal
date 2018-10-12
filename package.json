@@ -1,0 +1,26 @@
+{
+  "name": "misimi-the-sequal",
+  "version": "1.0.0",
+  "description": "Misimi, the Sequal",
+  "repository": "https://www.github.com/mikelothar/misimi-the-sequal",
+  "author": "Mike Lothar",
+  "license": "ISC",
+  "scripts": {
+    "start": "webpack-dev-server --port=1337",
+    "build": "webpack -p --config webpack.prod.config.js"
+  },
+  "devDependencies": {
+    "babel-core": "6",
+    "babel-loader": "^7.0.0",
+    "babel-preset-env": "^1.0.0",
+    "clean-webpack-plugin": "^0.1.19",
+    "copy-webpack-plugin": "^4.5.1",
+    "html-webpack-plugin": "^3.2.0",
+    "raw-loader": "^0.5.1",
+    "webpack": "^3.0.0",
+    "webpack-dev-server": "^2.0.0"
+  },
+  "dependencies": {
+    "phaser": "^3.14.0"
+  }
+}
