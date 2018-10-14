@@ -1,8 +1,8 @@
 import 'phaser'
 import {version} from '../package.json'
-import {Preloader} from './scenes/preloader'
-import {Main} from './scenes/main'
-import {canvas} from './config/dimensions'
+import Preloader from './scenes/preloader'
+import Main from './scenes/main'
+import canvas from './config/dimensions'
 
 new Phaser.Game({
   title: 'Misimi the Sequal',
