@@ -4,7 +4,7 @@ export default class Preloader extends Phaser.Scene {
   }
 
   preload() {
-    this.load.image('cokecan', 'assets/cokecan.png')
+    this.load.image('sky', 'assets/images/sky.png')
 
     this.load.tilemapTiledJSON('map', 'assets/spritesheets/misimi.json')
     this.load.spritesheet(
