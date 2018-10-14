@@ -14,6 +14,6 @@ new Phaser.Game({
   type: Phaser.AUTO,
   height: canvas.height,
   width: canvas.width,
-  // transparent: true,
+  transparent: true,
   scene: [Preloader, Main],
 })
