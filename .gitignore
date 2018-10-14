@@ -1,2 +1,4 @@
+*.sln
+.idea/
 build/
 node_modules/
