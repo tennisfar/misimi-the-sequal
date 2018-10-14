@@ -6,7 +6,7 @@ import { canvas } from './config/dimensions'
 
 const gameConfig = {
   title: 'Misimi the Sequal',
-  url: 'http://misimi2.netlify.com',
+  url: 'https://misimi2.netlify.com',
   version,
   banner: {
     hidePhaser: true
