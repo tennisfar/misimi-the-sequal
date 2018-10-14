@@ -6,7 +6,7 @@
   "author": "Mike Lothar",
   "license": "ISC",
   "scripts": {
-    "start": "webpack-dev-server --port=1337",
+    "start": "webpack-dev-server --port=1337 --content-base ./ --hot --watch  --mode=development",
     "build": "webpack -p --config webpack.prod.config.js"
   },
   "devDependencies": {
@@ -17,8 +17,9 @@
     "copy-webpack-plugin": "^4.5.1",
     "html-webpack-plugin": "^3.2.0",
     "raw-loader": "^0.5.1",
-    "webpack": "^3.0.0",
-    "webpack-dev-server": "^2.0.0"
+    "webpack": "^4.20.2",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.9"
   },
   "dependencies": {
     "phaser": "^3.14.0"

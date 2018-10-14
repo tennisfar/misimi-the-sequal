@@ -5,38 +5,52 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const webpack = require('webpack');
 
 module.exports = {
+  watchOptions: {
+    ignored: /node_modules/
+  },
+  watch: true,
   entry: {
-    app: './src/index.js',
-    'production-dependencies': ['phaser']
+    app: './src/index.js'
   },
   output: {
-    path: path.resolve(__dirname, 'build'),
-    filename: 'app.bundle.js'
+    filename: '[name].js',
+    path: path.resolve(__dirname, 'build')
+  },
+
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        commons: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          chunks: 'all'
+        }
+      }
+    }
   },
 
   module: {
-    rules: [{
-      test: /\.js$/,
-      include: path.resolve(__dirname, 'src/'),
-      use: {
-        loader: 'babel-loader',
-        options: {
-          presets: ['env']
+    rules: [
+      {
+        test: /\.js$/,
+        include: path.resolve(__dirname, 'src/'),
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['env']
+          }
         }
       }
-    }]
+    ]
   },
 
   devServer: {
-    contentBase: path.resolve(__dirname, 'build'),
+    contentBase: path.resolve(__dirname, 'build')
   },
 
   plugins: [
-    // new CleanWebpackPlugin(['build']),
-    new CopyWebpackPlugin([{
-        from: path.resolve(__dirname, 'index.html'),
-        to: path.resolve(__dirname, 'build')
-      },
+    new CleanWebpackPlugin(['build']),
+    new CopyWebpackPlugin([
       {
         from: path.resolve(__dirname, 'assets', '**', '*'),
         to: path.resolve(__dirname, 'build')
@@ -46,9 +60,13 @@ module.exports = {
       'typeof CANVAS_RENDERER': JSON.stringify(true),
       'typeof WEBGL_RENDERER': JSON.stringify(true)
     }),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'production-dependencies',
-      filename: 'production-dependencies.bundle.js'
-    }),
-  ],
+    new HtmlWebpackPlugin({
+      filename: 'index.html',
+      template: './src/index.html',
+      chunks: [
+        'vendors', 'app'
+      ],
+      // chunksSortMode: 'manual',
+    })
+  ]
 }
