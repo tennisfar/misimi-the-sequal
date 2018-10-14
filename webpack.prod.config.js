@@ -5,43 +5,60 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const webpack = require('webpack');
 
 module.exports = {
-  entry: path.resolve(__dirname, 'src/index.js'),
+  entry: {
+    app: './src/index.js'
+  },
+
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: '[name].[hash].js'
   },
 
-  module: {
-    rules: [{
-      test: /\.js$/,
-      include: path.resolve(__dirname, 'src/'),
-      use: {
-        loader: 'babel-loader',
-        options: {
-          presets: ['env']
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        commons: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          chunks: 'all'
         }
       }
-    }]
+    }
+  },
+
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader'
+        }
+      }
+    ]
   },
 
   plugins: [
     new CleanWebpackPlugin(['build']),
-    new CopyWebpackPlugin([{
-        from: path.resolve(__dirname, './src/index.html'),
-        to: path.resolve(__dirname, 'build')
-      },
+
+    new CopyWebpackPlugin([
       {
         from: path.resolve(__dirname, 'assets', '**', '*'),
         to: path.resolve(__dirname, 'build')
       }
     ]),
+
     new webpack.DefinePlugin({
       'typeof CANVAS_RENDERER': JSON.stringify(true),
       'typeof WEBGL_RENDERER': JSON.stringify(true)
     }),
+
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: './src/index.html',
+      chunks: [
+        'vendors', 'app'
+      ],
       minify: {
         removeAttributeQuotes: true,
         collapseWhitespace: true,
@@ -51,7 +68,7 @@ module.exports = {
         minifyURLs: true,
         removeComments: true,
         removeEmptyAttributes: true
-      },
-    }),
-  ],
+      }
+    })
+  ]
 }

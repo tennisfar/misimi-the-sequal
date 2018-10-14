@@ -12,6 +12,7 @@ module.exports = {
   entry: {
     app: './src/index.js'
   },
+
   output: {
     filename: '[name].js',
     path: path.resolve(__dirname, 'build')
@@ -47,16 +48,19 @@ module.exports = {
 
   plugins: [
     new CleanWebpackPlugin(['build']),
+
     new CopyWebpackPlugin([
       {
         from: path.resolve(__dirname, 'assets', '**', '*'),
         to: path.resolve(__dirname, 'build')
       }
     ]),
+
     new webpack.DefinePlugin({
       'typeof CANVAS_RENDERER': JSON.stringify(true),
       'typeof WEBGL_RENDERER': JSON.stringify(true)
     }),
+    
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: './src/index.html',
