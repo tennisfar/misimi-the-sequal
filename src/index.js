@@ -1,10 +1,10 @@
-import 'phaser';
-
+import 'phaser'
 import {version} from '../package.json'
-import {SimpleScene} from './scenes/simple-scene';
-import { canvas } from './config/dimensions'
+import {Preloader} from './scenes/preloader'
+import {Main} from './scenes/main'
+import {canvas} from './config/dimensions'
 
-const gameConfig = {
+new Phaser.Game({
   title: 'Misimi the Sequal',
   url: 'https://misimi2.netlify.com',
   version,
@@ -15,7 +15,5 @@ const gameConfig = {
   height: canvas.height,
   width: canvas.width,
   // transparent: true,
-  scene: SimpleScene
-};
-
-new Phaser.Game(gameConfig);
+  scene: [Preloader, Main]
+})
